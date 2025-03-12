@@ -1,0 +1,9 @@
+{
+  "RNA_Edit_Workflow.base_path": "/home/data/lpb1/project/20_RNA_edit_COAD_wdl_test",
+  "RNA_Edit_Workflow.ref_genome": "/home/data/lpb1/project/scRNA_cellranger/data/refdata-gex-GRCh38-2020-A",
+  "RNA_Edit_Workflow.marker_file": "/home/data/lpb1/project/human_common_marker.xlsx",
+  "RNA_Edit_Workflow.sample_list": "sample.list",
+  "RNA_Edit_Workflow.sample_group": "sample.group",
+  "RNA_Edit_Workflow.up_out": "01.data",
+  "RNA_Edit_Workflow.status_file": "task_status.log"
+}
