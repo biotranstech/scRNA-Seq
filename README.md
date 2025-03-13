@@ -1,4 +1,4 @@
-# RNA编辑工作流程
+# scRNA-Seq
 
 ## 概述
 
@@ -9,7 +9,6 @@
 ## 工作流文件目录结构
 
 ```
-/workflow/
 ├── run.wdl                    # 主工作流定义文件
 ├── run2.wdl                   # 第二工作流定义文件
 ├── run_workflow_inputs.json   # 主工作流输入参数文件
