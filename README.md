@@ -1,27 +1,25 @@
 # scRNA-Seq
 
-## 概述
+This is a workflow for processing single-cell RNA editing analysis, written in the WDL language and executed based on the Cromwell workflow engine. The workflow is divided into two main stages:
+1. **run.wdl**: Complete the whole process from raw data processing to scRNA analysis
+2. **run2.wdl**: RNA editing was performed after processing
 
-这是一个用于处理单细胞RNA编辑分析的工作流程，使用WDL语言编写并基于Cromwell工作流引擎执行。该工作流主要分为两个阶段：
-1. **run.wdl**: 完成从原始数据处理到scRNA分析的全过程
-2. **run2.wdl**: 进行RNA编辑后处理
-
-## 工作流文件目录结构
+## Workflow file directory structure
 
 ```
-├── run.wdl                    # 主工作流定义文件
-├── run2.wdl                   # 第二工作流定义文件
-├── run_workflow_inputs.json   # 主工作流输入参数文件
-├── run_workflow_inputs2.json  # 第二工作流输入参数文件
-├── sample.group               # 样本分组文件
-├── sample.list                # 样本列表文件
-├── scripts/                   # 脚本目录
-│   ├── cellranger/            # Cellranger处理脚本
-│   ├── merge_cellrange/       # 数据合并脚本
-│   └── scRNA_downanalysis/    # scRNA下游分析脚本
-├── src/                       # 中间文件目录
-├── step2_afterAnn.R           # RNA编辑后处理R脚本
-└── task_status.log            # 任务状态记录文件
+├── run.wdl                    # Main workflow definition file
+├── run2.wdl                   # Second workflow definition file
+├── run_workflow_inputs.json   # Main workflow input parameter file
+├── run_workflow_inputs2.json  # Second workflow input parameter file
+├── sample.group               # Sample group file
+├── sample.list                # Sample list file
+├── scripts/                   # Script directory
+│   ├── cellranger/            # Cellranger processing script
+│   ├── merge_cellrange/       # Data merge script
+│   └── scRNA_downanalysis/    # scRNA downstream analysis script
+├── src/                       # Intermediate file directory
+├── step2_afterAnn.R           # RNA editing post-processing R script
+└── task_status.log            # Task status record file
 ```
 
 ## 工作流程详解
