@@ -1,4 +1,7 @@
-# scRNA-Seq
+scRNA-Seq work flow
+======
+
+## scRNA-Seq overview
 
 This is a workflow for processing single-cell RNA editing analysis, written in the WDL language and executed based on the Cromwell workflow engine. The workflow is divided into two main stages:
 1. **run.wdl**: Complete the whole process from raw data processing to scRNA analysis
