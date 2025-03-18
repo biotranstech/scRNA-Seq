@@ -3,6 +3,10 @@ scRNA-Seq work flow
 
 ## scRNA-Seq overview
 
+### What is RNA editing
+RNA editing is a dynamic post-transcriptional modification with significant implications for gene regulation and disease mechanisms.
+
+### Introduction
 This is a workflow for processing single-cell RNA editing analysis, written in the WDL language and executed based on the Cromwell workflow engine. The workflow is divided into two main stages:
 1. **run.wdl**: Complete the whole process from raw data processing to scRNA analysis
 2. **run2.wdl**: RNA editing was performed after processing
@@ -26,6 +30,28 @@ This is a workflow for processing single-cell RNA editing analysis, written in t
 ```
 
 ## Installation
+* REQUIREMENT
+   * [Cromwell](https://github.com/broadinstitute/cromwell/releases)
+   * [Cromwell](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger)
+   * [R](https://www.r-project.org)
+### Create and activate R environment
+For scRNA-Seq, the R version need is over 4.2. You can create a YAML file called environment.yml with the following content:
+```
+name: r_environment
+dependencies:
+  - r-base=4.2.3
+  - bioconda::bioconductor-annotationdbi
+  - r-corrplot
+  - r-corrplot
+  - r-optparse
+  - r-homologene
+  - r-openxlsx
+  - r-Seurat
+  - r-tidyverse
+  - r-data.table
+  - r-plyr
+  - r-ggplot
+```
 
 * REQUIREMENT
    * [Cromwell](https://github.com/broadinstitute/cromwell/releases)
