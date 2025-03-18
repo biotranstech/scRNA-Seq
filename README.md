@@ -53,11 +53,6 @@ dependencies:
   - r-ggplot
 ```
 
-* REQUIREMENT
-   * [Cromwell](https://github.com/broadinstitute/cromwell/releases)
-   * [Cromwell](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger)
-   * [R](https://www.r-project.org)
-
 ## Usage
 
 ### First：From raw data to scRNA analysis (run.wdl)
