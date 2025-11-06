@@ -1,0 +1,25 @@
+{
+    "title": "Single Cell RNA Edit Config",
+    "author": "三口先生",
+    "date": "2024/7/31",
+    "version": "1.0.0",
+    "software Dir": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit",
+    "Others File": {
+        "Dissociation_reaction_marker": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/解离反应刺激标志物.txt",
+	"Erythrocyte_marker": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/红细胞标志物.txt",
+	"Cell_cycle_S_marker": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/细胞周期标志物S期.txt",
+	"Cell_cycle_G2M_marker": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/细胞周期标志物G2M期.txt",
+        "Cell2editing": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/Cell2editing.sh",
+        "ref_genome": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/ref/hg38.fa",
+        "ref_dbsnp": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/ref/00-All.vcf.gz",
+        "ref_simpleRepeat": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/ref/hg38_simpleRepeat.merge.bed",
+        "ref_alu": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/ref/hg38.alu.bed",
+        "Split_bacorde_v2": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/Split_bacorde_v2.pl",
+        "duplicate.v2": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/duplicate.v2.py",
+        "red_ML": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/red_ML.pl",
+        "reditools": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/reditools.py",
+        "gatk_script": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/gatk.sh",
+        "gatk_script_ref_genome": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/script/cellranger_GRCh38_ref.fa",
+        "ref_genome_mouse": "/mnt/sda/project/yjc1/pipeline/02_scRNA_edit/ref/refdata-gex-mm10-2020-A/fasta/genome.fa"
+    }
+}
