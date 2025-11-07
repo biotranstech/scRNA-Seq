@@ -1,5 +1,0 @@
-sample_id	Group	Path
-sample1	CC1	/home/data/lpb1/project/20_RNA_edit_COAD_wdl_test/01.data/02.out/sample1/outs/filtered_feature_bc_matrix
-sample2	CC1	/home/data/lpb1/project/20_RNA_edit_COAD_wdl_test/01.data/02.out/sample2/outs/filtered_feature_bc_matrix
-sample5	CC2	/home/data/lpb1/project/20_RNA_edit_COAD_wdl_test/01.data/02.out/sample5/outs/filtered_feature_bc_matrix
-sample6	CC2	/home/data/lpb1/project/20_RNA_edit_COAD_wdl_test/01.data/02.out/sample6/outs/filtered_feature_bc_matrix
