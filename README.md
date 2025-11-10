@@ -65,30 +65,17 @@ python ./after_anno.py --work_dir ./01_work --out_dir ./02_result -s sample.xls
 ```
 
 ### sample.xls
-Sample information file: 
+Sample information file. The first column contains sample IDs, the second and third columns contain data paths, and the fourth column contains sample grouping information: 
 
 ```json
-{
-  "RNA_Edit_Workflow.base_path": "/home/data/lpb1/project/00_pipeline_scRNA_edit",
-  "RNA_Edit_Workflow.sample_list": "workflow/sample.list",
-  "RNA_Edit_Workflow.sample_group": "workflow/sample.group",
-  "RNA_Edit_Workflow.ref_genome": "/path/to/reference_genome",
-  "RNA_Edit_Workflow.marker_file": "/path/to/marker_file",
-  "RNA_Edit_Workflow.up_out": "01.data",
-  "RNA_Edit_Workflow.status_file": "workflow/task_status.log"
-}
+sample1 /../demo/sample1/R22071372-J22120174-J22120174_combined_R1.fastq.gz    /../demo/sample1/R22071372-J22120174-J22120174_combined_R2.fastq.gz    CC1
+sample2 /../demo/sample2/R22071373-J22120175-J22120175_combined_R1.fastq.gz    /../demo/sample2/R22071373-J22120175-J22120175_combined_R2.fastq.gz    CC1
+sample5 /../demo/sample5/R22071383-J22120191-J22120191_combined_R1.fastq.gz    /../demo/sample5/R22071383-J22120191-J22120191_combined_R2.fastq.gz    CC2
+sample6 /../demo/sample6/R22071384-J22120192-J22120192_combined_R1.fastq.gz    /./demo/sample6/R22071384-J22120192-J22120192_combined_R2.fastq.gz    CC2
 ```
 
-### run_workflow_inputs2.json
-Input parameter file for Phase 2 workflow (run2.wdl) :
-
-```json
-{
-  "RNA_Edit_Workflow2.base_path": "/home/data/lpb1/project/00_pipeline_scRNA_edit"
-}
-```
 
 ## Status tracking and restart
 
-The system records completed tasks in the task_status.log file. If the workflow interruption needs to be restarted, the system will automatically check the file, skip the completed task, and continue to execute from the breakpoint, improving work efficiency.
+When submitting a job using nohup, you can monitor the workflow’s progress in real time by checking the nohup.out file. When submitting the job directly in the command line, you can monitor the workflow’s progress through the messages printed on the screen. If the workflow interruption needs to be restarted, the system will automatically check the file, skip the completed task, and continue to execute from the breakpoint, improving work efficiency.
 
