@@ -7,26 +7,21 @@ scRNA-Seq work flow
 RNA editing is a dynamic post-transcriptional modification with significant implications for gene regulation and disease mechanisms.
 
 ### Introduction
-This is a workflow for processing single-cell RNA editing analysis, written in the WDL language and executed based on the Cromwell workflow engine. The workflow is divided into two main stages:
-1. **run.wdl**: Complete the whole process from raw data processing to scRNA analysis
-2. **run2.wdl**: RNA editing was performed after processing
+This is a workflow for processing single-cell RNA editing analysis, developed based on the Python package DAGflow. The workflow is divided into two main stages:
+1. **up_analysis.py**: Complete the whole process from raw data processing to scRNA analysis
+2. **after_anno.py**: RNA editing was performed after processing
 
 ## Workflow file directory structure
 
 ```
-├── run.wdl                    # Main workflow definition file
-├── run2.wdl                   # Second workflow definition file
-├── run_workflow_inputs.json   # Main workflow input parameter file
-├── run_workflow_inputs2.json  # Second workflow input parameter file
-├── sample.group               # Sample group file
+├── up_analysis.py             # Main workflow definition file
+├── after_anno.py              # Second workflow definition file
+├── common.py                  # Some workflow file processing modules
+├── config.py                  # Pipeline software configuration file
+├── dagflow/                   # Python DAGflow package
 ├── sample.list                # Sample list file
 ├── scripts/                   # Script directory
-│   ├── cellranger/            # Cellranger processing script
-│   ├── merge_cellrange/       # Data merge script
-│   └── scRNA_downanalysis/    # scRNA downstream analysis script
-├── src/                       # Intermediate file directory
-├── step2_afterAnn.R           # RNA editing post-processing R script
-└── task_status.log            # Task status record file
+└── human_common_marker.xlsx   # Human marker information
 ```
 
 ## Installation
@@ -55,24 +50,22 @@ dependencies:
 
 ## Usage
 
-### First：From raw data to scRNA analysis (run.wdl)
+### First：From raw data to scRNA analysis (up_analysis.py)
 
 ```bash
-cd /home/data/lpb1/project/00_pipeline_scRNA_edit
-java -jar /path/to/cromwell.jar run workflow/run.wdl -i workflow/run_workflow_inputs.json
+python ./up_analysis.py -i sample.xls --work_dir ./01_work --out_dir ./02_result 
 ```
 
-### Second：RNA editing processing (run2.wdl)
+### Second：RNA editing processing (after_anno.py)
 
 After the first phase is complete, the second phase of processing is performed：
 
 ```bash
-cd /home/data/lpb1/project/00_pipeline_scRNA_edit
-java -jar /path/to/cromwell.jar run workflow/run2.wdl -i workflow/run_workflow_inputs2.json
+python ./after_anno.py --work_dir ./01_work --out_dir ./02_result -s sample.xls
 ```
 
-### run_workflow_inputs.json
-The input parameter file for the main workflow (run.wdl) contains the following key parameters:
+### sample.xls
+Sample information file: 
 
 ```json
 {
