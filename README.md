@@ -96,11 +96,7 @@ conda activate scrna_r
 
 ### Install Required Software
 🔹 Single-cell processing
-
-Install:
-
-Cell Ranger
-
+Install [Cell Ranger](（https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger）)
 Download from official 10x Genomics website.
 
 
