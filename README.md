@@ -30,6 +30,33 @@ This pipeline provides:
 4. Structured outputs
 5. Restartable execution (checkpoint support)
 
+## Workflow Overview
+```
+FASTQ
+ ↓
+Cell Ranger (scRNA processing)
+ ↓
+Expression Matrix
+ ↓
+RNA Editing Detection
+ ↓
+Statistical Analysis
+ ↓
+Results
+```
+
+## Project Structure
+```
+├── up_analysis.py        # Stage 1: scRNA processing
+├── after_anno.py        # Stage 2: RNA editing analysis
+├── config.py            # Configuration file (MUST EDIT)
+├── common.py            # Utility modules
+├── dagflow/             # DAGflow framework
+├── scripts/             # Analysis scripts
+├── sample.list          # Sample input file
+└── human_common_marker.xlsx
+```
+
 ### What is RNA editing
 RNA editing is a dynamic post-transcriptional modification with significant implications for gene regulation and disease mechanisms.
 
