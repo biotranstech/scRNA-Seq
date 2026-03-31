@@ -57,6 +57,54 @@ Results
 └── human_common_marker.xlsx
 ```
 
+## Installation
+
+### Install Conda (if not installed)
+Recommended:
+```
+Miniconda
+Anaconda
+```
+
+### Create Python Environment
+```
+conda create -n scrna python=3.9 -y
+conda activate scrna
+```
+
+### Install R Environment (Required)
+Create environment.yml:
+```
+name: scrna_r
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base=4.2.3
+  - r-seurat
+  - r-tidyverse
+  - r-data.table
+  - r-openxlsx
+  - r-optparse
+  - bioconductor-annotationdbi
+```
+Run:
+```
+conda env create -f environment.yml
+conda activate scrna_r
+```
+
+### Install Required Software
+🔹 Single-cell processing
+
+Install:
+
+Cell Ranger
+
+Download from official 10x Genomics website.
+
+
+
 ### What is RNA editing
 RNA editing is a dynamic post-transcriptional modification with significant implications for gene regulation and disease mechanisms.
 
