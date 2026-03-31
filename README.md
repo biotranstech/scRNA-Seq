@@ -1,7 +1,34 @@
-scRNA-Seq work flow
+scRNA-Seq RNA Editing Workflow
 ======
 
 ## scRNA-Seq overview
+This project provides an automated workflow for single-cell RNA editing analysis, built on the Python DAGflow framework.
+It enables a complete pipeline from raw FASTQ data to RNA editing results, including:
+1. Single-cell RNA-seq processing
+2. Expression matrix generation
+3. RNA editing detection
+4. Statistical analysis
+5. Result output and visualization
+
+## Why Use This Workflow
+Single-cell RNA editing analysis is typically complex and fragmented:
+```
+| Challenge            | Traditional Approach                |
+| -------------------- | ----------------------------------- |
+| Multiple tools       | cellranger + custom scripts + R     |
+| Complex workflow     | Multi-step manual execution         |
+| Error-prone          | Path / format / parameter issues    |
+| Poor reproducibility | Different users → different results |
+```
+✅ Advantages of This Workflow
+
+This pipeline provides:
+
+1. Fully automated workflow
+2. Standardized processing
+3. Integrated RNA editing analysis
+4. Structured outputs
+5. Restartable execution (checkpoint support)
 
 ### What is RNA editing
 RNA editing is a dynamic post-transcriptional modification with significant implications for gene regulation and disease mechanisms.
