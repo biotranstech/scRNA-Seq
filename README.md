@@ -96,84 +96,135 @@ conda activate scrna_r
 
 ### Install Required Software
 🔹 Single-cell processing
-Install [cellranger](（https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger）)
+Install:
+```
+CellRanger（https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger）
+```
 Download from official 10x Genomics website.
 
-
-
-### What is RNA editing
-RNA editing is a dynamic post-transcriptional modification with significant implications for gene regulation and disease mechanisms.
-
-### Introduction
-This is a workflow for processing single-cell RNA editing analysis, developed based on the Python package DAGflow. The workflow is divided into two main stages:
-1. **up_analysis.py**: Complete the whole process from raw data processing to scRNA analysis
-2. **after_anno.py**: RNA editing was performed after processing
-
-## Workflow file directory structure
-
+## Configuration (CRITICAL)
+Edit:
 ```
-├── up_analysis.py             # Main workflow definition file
-├── after_anno.py              # Second workflow definition file
-├── common.py                  # Some workflow file processing modules
-├── config.py                  # Pipeline software configuration file
-├── dagflow/                   # Python DAGflow package
-├── sample.list                # Sample list file
-├── scripts/                   # Script directory
-└── human_common_marker.xlsx   # Human marker information
+config.py
 ```
+Update the following paths:
+1. cellranger path
+2. Rscript path
+3. reference genome path
+Example:
+```
+cellranger_path = "/your/path/cellranger"
+rscript_path = "/your/path/Rscript"
+reference = "/your/path/reference"
+```
+⚠️ If not configured → pipeline will fail
 
-## Installation
-* REQUIREMENT
-   * [Cromwell](https://github.com/broadinstitute/cromwell/releases)
-   * [Cromwell](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger)
-   * [R](https://www.r-project.org)
-### Create and activate R environment
-For scRNA-Seq, the R version need is over 4.2. You can create a YAML file called environment.yml with the following content:
+## Input Preparation
+sample.xls (Required)
 ```
-name: r_environment
-dependencies:
-  - r-base=4.2.3
-  - bioconda::bioconductor-annotationdbi
-  - r-corrplot
-  - r-corrplot
-  - r-optparse
-  - r-homologene
-  - r-openxlsx
-  - r-Seurat
-  - r-tidyverse
-  - r-data.table
-  - r-plyr
-  - r-ggplot
+sample1   /path/sample1_R1.fastq.gz   /path/sample1_R2.fastq.gz   group1
+sample2   /path/sample2_R1.fastq.gz   /path/sample2_R2.fastq.gz   group1
+sample3   /path/sample3_R1.fastq.gz   /path/sample3_R2.fastq.gz   group2
+```
+📌 Format Description
+```
+| Column | Description   |
+| ------ | ------------- |
+| 1      | Sample ID     |
+| 2      | R1 FASTQ path |
+| 3      | R2 FASTQ path |
+| 4      | Group         |
 ```
 
 ## Usage
+### Step 1: Run scRNA Processing
+```
+Step 1: Run scRNA Processing
+```
+This step performs:
+1. Cell Ranger processing
+2. Expression matrix generation
 
-### First：From raw data to scRNA analysis (up_analysis.py)
+### Step 2: Run RNA Editing Analysis
+```
+python after_anno.py \
+  --work_dir ./01_work \
+  --out_dir ./02_result \
+  -s sample.xls
+```
+This step performs:
+1. RNA editing detection
+2. Statistical analysis
 
-```bash
-python ./up_analysis.py -i sample.xls --work_dir ./01_work --out_dir ./02_result 
+## Output
+```
+02_result/
+├── 01_Cellranger
+├── 02_merge
+├── 03_scdata
+├── 04_RNAedit
+├── Figure
+└── table
 ```
 
-### Second：RNA editing processing (after_anno.py)
-
-After the first phase is complete, the second phase of processing is performed：
-
-```bash
-python ./after_anno.py --work_dir ./01_work --out_dir ./02_result -s sample.xls
+## Monitoring & Resume
+### Monitor Progress
+```
+nohup python up_analysis.py ... &
+tail -f nohup.out
 ```
 
-### sample.xls
-Sample information file. The first column contains sample IDs, the second and third columns contain data paths, and the fourth column contains sample grouping information: 
+### Resume After Interruption
+Simply rerun the same command:
+```
+python up_analysis.py ...
+```
+✔ Completed steps will be skipped
+✔ Pipeline resumes automatically
 
-```json
-sample1 /../demo/sample1/R22071372-J22120174-J22120174_combined_R1.fastq.gz    /../demo/sample1/R22071372-J22120174-J22120174_combined_R2.fastq.gz    CC1
-sample2 /../demo/sample2/R22071373-J22120175-J22120175_combined_R1.fastq.gz    /../demo/sample2/R22071373-J22120175-J22120175_combined_R2.fastq.gz    CC1
-sample5 /../demo/sample5/R22071383-J22120191-J22120191_combined_R1.fastq.gz    /../demo/sample5/R22071383-J22120191-J22120191_combined_R2.fastq.gz    CC2
-sample6 /../demo/sample6/R22071384-J22120192-J22120192_combined_R1.fastq.gz    /./demo/sample6/R22071384-J22120192-J22120192_combined_R2.fastq.gz    CC2
+## Common Issues
+### Missing Software
+Check installation:
+```
+Cell Ranger
+R
 ```
 
+### Incorrect Paths
+Check:
+```
+config.py
+```
 
-## Status tracking and restart
+### Permission Issues
+```
+chmod -R 755 project_directory
+```
 
-When submitting a job using nohup, you can monitor the workflow’s progress in real time by checking the nohup.out file. When submitting the job directly in the command line, you can monitor the workflow’s progress through the messages printed on the screen. If the workflow interruption needs to be restarted, the system will automatically check the file, skip the completed task, and continue to execute from the breakpoint, improving work efficiency.
+### Missing R Packages
+```
+conda install r-seurat
+```
 
+## Minimal Working Example
+Prepare:
+1. sample.xls
+2. FASTQ files
+3. config.py properly set
+
+Run:
+```
+python up_analysis.py -i sample.xls
+python after_anno.py -s sample.xls
+```
+
+## Summary
+This workflow provides a complete solution for scRNA RNA editing analysis.
+```
+| Feature         | Description           |
+| --------------- | --------------------- |
+| Automation      | One-command execution |
+| Standardization | Reduced human errors  |
+| Reproducibility | DAGflow-controlled    |
+| Scalability     | Modular design        |
+```
